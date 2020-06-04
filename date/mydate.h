@@ -1,6 +1,6 @@
 #ifndef __MYDATE_H_
 #define __MYDATE_H_
-#include"../common.h"
+#include"../common/common.h"
 namespace LibcuDate{
     class MyDate
     {
