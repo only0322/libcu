@@ -5,9 +5,9 @@ namespace LibcuDate{
     class MyDate
     {
         public:
-            char * getNowDateStr()  //返回YYYYMMDD的日期字符串
+            void getNowDateStr(char * today)  //返回YYYYMMDD的日期字符串
             {
-                char * today;
+
                 #ifdef _WIN32
                 
                 #else
@@ -19,7 +19,7 @@ namespace LibcuDate{
                 strftime(today,0,"%Y%m%d",local);
                 
                 #endif
-                return today;
+
             }
     };
 }
