@@ -1,7 +1,7 @@
 #ifndef __MYDATE_H_
 #define __MYDATE_H_
-
-namespace Date{
+#include"../common.h"
+namespace LibcuDate{
     class MyDate
     {
         public:

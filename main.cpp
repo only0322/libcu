@@ -1,12 +1,12 @@
-#include"common.h"
+// #include"common.h"
 
 #include"date/mydate.h"
-using namespace Date;
+using namespace LibcuDate;
 
 int main(int argc,char* argv[])
 {
     MyDate date;
-    char * date = date.getNowDateStr();
-    std::cout<<"date = "<<date<<std::endl;
+    char * today = date.getNowDateStr();
+    std::cout<<"date = "<<today<<std::endl;
     return 0;
 }
