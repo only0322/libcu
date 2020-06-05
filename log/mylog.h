@@ -1,10 +1,11 @@
 #ifndef _MYLOG_H_
 #define _MYLOG_H_
 
-namespace MyLog {
+namespace MyLog 
+{
     class BaseLog 
     {
-        
+
     };
 }
 

@@ -1,13 +1,14 @@
 #ifndef _MYDATE_H_
 #define _MYDATE_H_
 #include"../common/common.h"
-namespace LibcuDate{
+namespace LibcuDate
+{
     class MyDate
     {
         public:
             void getNowDateStr(char * today);  //返回YYYYMMDD的日期字符串
             
-            
+
 
     };
 
