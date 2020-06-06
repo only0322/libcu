@@ -6,9 +6,10 @@ using namespace LibcuDate;
 int main(int argc,char* argv[])
 {
     MyDate date;
-    char  today[8+1];
+    char  today[14+1];
     memset(today,0x00,sizeof(today));
-    date.getNowDateStr(today);
+    date.getNowDateTimeStr(today); 
     std::cout<<"date = "<<today<<std::endl;
-    return 0;
+
+    return 0; 
 }

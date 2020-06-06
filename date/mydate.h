@@ -15,8 +15,17 @@ namespace LibcuDate
                 strftime(today,9,"%Y%m%d",local);
             }
 
+            void getNowDateTimeStr(char * today)  //返回YYYYMMDDHHmmss的日期字符串
+            {
+                time_t lt;
+                struct tm * local;
+                lt = time(0);
+                local = localtime(&lt);
+                strftime(today,14,"%Y%m%d%H%M%S",local);
+            }
 
     };
+
 
 }
 #endif
