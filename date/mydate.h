@@ -24,20 +24,55 @@ namespace LibcuDate
                 strftime(today,14,"%Y%m%d%H%M%S",local);
             }
             
-            void Get_TimeStamp(char * stamp)   //生成系统时间戳，返回15位日期
-            {	
-            time_t current;
-            struct tm *tmCurrentTime;
+            long getNowDateLong()
+            {
+                char	now[9];
+                memset(now,0,sizeof(now));
+                this->getNowDateStr(now);
 
-            tzset();
-            time(&current);
-            tmCurrentTime = localtime(&current);
-            sprintf(stamp, "%4d%02d%02d%02d%02d%02d",
-                    tmCurrentTime->tm_year + 1900, tmCurrentTime->tm_mon + 1,
-                    tmCurrentTime->tm_mday, tmCurrentTime->tm_hour,
-                    tmCurrentTime->tm_min, tmCurrentTime->tm_sec);
+                return atol(now);
             }
 
+            long getNowDateTimeLong()
+            {
+                char	now[15];
+                memset(now,0,sizeof(now));
+                this->getNowDateTimeStr(now);
+
+                return atol(now);
+            }
+
+            int getKimLarsen(char * date)  //传入8位日期，返回当前是星期几，1为周一，7为周日，0为日期不合法
+            {
+                if(strlen(date)!=8)
+                {
+                    return 0;
+                }
+                char cYear[4+1];
+                char cMonth[2+1];
+                char cDay[2+1];
+                memset(cYear,0x00,sizeof(cYear));
+                memset(cMonth,0x00,sizeof(cMonth));
+                memset(cDay,0x00,sizeof(cDay));
+                memcpy(cYear,date,4);
+                memcpy(cMonth,date+4,2);
+                memcpy(cDay,date+6,2);
+                int year = atoi(cYear);
+                int month = atoi(cMonth);
+                int day = atoi(cDay);
+                if(month == 1)
+                {
+                    month = 13;
+                    year--;
+                }
+                else if(month ==2)
+                {
+                    month = 14;
+                    year--;
+                }
+                int week= (day+2*month+3*(month+1)/5+year+year/4-year/100+year/400+1)%7;
+                return week;
+            }
 
     };
 
