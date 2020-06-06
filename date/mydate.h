@@ -46,7 +46,7 @@ namespace LibcuDate
             {
                 if(strlen(date)!=8)
                 {
-                    return 0;
+                    return -1;
                 }
                 char cYear[4+1];
                 char cMonth[2+1];
@@ -70,7 +70,9 @@ namespace LibcuDate
                     month = 14;
                     year--;
                 }
-                int week= (day+2*month+3*(month+1)/5+year+year/4-year/100+year/400+1)%7;
+                //(iday+2*imonth+3*(imonth+1)/5+iyear+iyear/4-iyear/100+iyear/400)%7
+                int week= (year + year /4 + year / 400 - year / 100 + 2 * month + 3 * (month + 1)/5 + day) % 7;
+                week++;
                 return week;
             }
 
