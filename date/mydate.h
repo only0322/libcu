@@ -23,6 +23,21 @@ namespace LibcuDate
                 local = localtime(&lt);
                 strftime(today,14,"%Y%m%d%H%M%S",local);
             }
+            
+            void Get_TimeStamp(char * stamp)   //生成系统时间戳，返回15位日期
+            {	
+            time_t current;
+            struct tm *tmCurrentTime;
+
+            tzset();
+            time(&current);
+            tmCurrentTime = localtime(&current);
+            sprintf(stamp, "%4d%02d%02d%02d%02d%02d",
+                    tmCurrentTime->tm_year + 1900, tmCurrentTime->tm_mon + 1,
+                    tmCurrentTime->tm_mday, tmCurrentTime->tm_hour,
+                    tmCurrentTime->tm_min, tmCurrentTime->tm_sec);
+            }
+
 
     };
 
