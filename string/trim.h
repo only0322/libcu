@@ -99,5 +99,29 @@ namespace LibcuTrim
         return trimformat(str,' ');
     }
 
+    //左补零
+    int LeftAddZero (char *pstrDstBuf,char *pstrSrcStr, int iDstLen)
+    {	
+        int i;
+        Trim(pstrSrcStr);
+        for (i = 0; i < iDstLen - strlen(pstrSrcStr); i++)    
+        {		
+            if (pstrDstBuf[i] == 0x00)			
+                pstrDstBuf[i] = '0';	
+        }		
+        strcpy(&pstrDstBuf[i],pstrSrcStr);	
+        return 0;
+    }
+
+    //右补零
+    int RightAddZero (char *sStr, int nLen)
+    {
+        int i;
+        
+        for (i = 0; i < nLen; i++)
+            if (sStr[i] == 0x00)
+                sStr[i] = '0';
+        return 0;
+    }
 
 } 

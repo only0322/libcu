@@ -2,16 +2,17 @@
 
 #include"date/mydate.h"
 #include"string/trim.h"
+#include"interger/numeration.h"
 using namespace LibcuDate;
 using namespace std;
 using namespace LibcuTrim;
+using namespace LibcuNum;
 int main(int argc,char* argv[])
 {
     
-    MyDate date;
-    long last = 20200506;
-    long now = date.getNowDateLong();
-    long result = date.decDate(last,now);
-    cout<<result<<endl;
+    
+    char test[100] = "100001001000100";
+    long des = Bin2Dec(test);
+    cout<<des<<endl;
     return 0; 
 }
