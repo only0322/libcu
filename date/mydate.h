@@ -15,6 +15,24 @@ namespace LibcuDate
                 strftime(today,9,"%Y%m%d",local);
             }
 
+            void getNowTimeStr(char * today)  //返回HHmmss
+            {
+                time_t lt;
+                struct tm * local;
+                lt = time(0);
+                local = localtime(&lt);
+                strftime(today,7,"%H%M%S",local);
+            }
+
+            long getNowTimeLong()
+            {
+                char	now[7];
+                memset(now,0,sizeof(now));
+                this->getNowTimeStr(now);
+
+                return atol(now);
+            }
+
             void getNowDateTimeStr(char * today)  //返回YYYYMMDDHHmmss的日期字符串
             {
                 time_t lt;
@@ -75,6 +93,77 @@ namespace LibcuDate
                 week++;
                 return week;
             }
+
+            //进行日期的加减
+            long  addDate(long origindate,int add)
+            {
+                time_t	timebuf;
+                tm *tptr;
+                tm  oldtime;
+                long	nowdate;
+                memset(&oldtime,0,sizeof(struct tm));
+                oldtime.tm_year = origindate / 10000 - 1900;
+                oldtime.tm_mon = (origindate % 10000) / 100 -1;
+                oldtime.tm_mday = (origindate % 100);
+                timebuf = mktime(&oldtime);
+                timebuf += 24*3600*add;
+                tptr = localtime(&timebuf);
+                nowdate = (long)(tptr->tm_year+1900) * 10000;
+                nowdate += (tptr->tm_mon + 1) * 100 + tptr->tm_mday;
+                return nowdate;
+            }
+
+            //进行小时的加减
+            long  addHour(long origidate, long origitime, long add)
+            {
+                time_t	timebuf;
+                struct tm *tptr;
+                struct tm  oldtime;
+                long	nowdate;
+                memset(&oldtime,0,sizeof(struct tm));
+                oldtime.tm_year = origidate / 10000 - 1900;
+                oldtime.tm_mon = (origidate % 10000) / 100 -1;
+                oldtime.tm_mday = (origidate % 100);
+                oldtime.tm_hour = origitime/10000;
+                oldtime.tm_min  = (origitime%10000)/100; 
+                oldtime.tm_sec  = origitime%100;
+                timebuf = mktime(&oldtime);
+                timebuf += 3600*add;
+                tptr = localtime(&timebuf);
+                nowdate = (long)((tptr->tm_year+1900) * 10000)*1000000;
+                nowdate += ((tptr->tm_mon + 1) * 100 + tptr->tm_mday)*1000000;
+                nowdate += tptr->tm_hour * 10000;
+                nowdate += tptr->tm_min * 100;
+                nowdate += tptr->tm_sec;
+                
+                return nowdate;
+            }
+
+            //传入两个YYYYMMDD格式的时间 返回间隔的天数
+            long decDate(long oridate,long newdate) 
+            {
+                time_t timebuf1;
+                time_t timebuf2;
+                
+                struct tm oldtime;
+                struct tm newtime;
+                long dec;
+                memset(&oldtime,0,sizeof(struct tm));
+                oldtime.tm_year = oridate / 10000 - 1900;
+                oldtime.tm_mon = (oridate % 10000) / 100 -1;
+                oldtime.tm_mday = (oridate % 100);
+                timebuf1 = mktime(&oldtime);
+                
+                memset(&newtime,0,sizeof(struct tm));
+                newtime.tm_year = newdate / 10000 - 1900;
+                newtime.tm_mon = (newdate % 10000) / 100 -1;
+                newtime.tm_mday = (newdate % 100);
+                timebuf2 = mktime(&newtime);
+                
+                dec = (timebuf2-timebuf1)/(24*3600);
+                return dec;
+            }
+            
 
     };
 
