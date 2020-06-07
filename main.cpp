@@ -1,8 +1,10 @@
 //#include"common/common.h"
 
 #include"date/mydate.h"
+#include"string/trim.h"
 using namespace LibcuDate;
 using namespace std;
+using namespace LibcuTrim;
 int main(int argc,char* argv[])
 {
     
