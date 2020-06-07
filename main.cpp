@@ -9,10 +9,7 @@ using namespace LibcuTrim;
 using namespace LibcuNum;
 int main(int argc,char* argv[])
 {
-    
-    
-    char test[100] = "100001001000100";
-    long des = Bin2Dec(test);
-    cout<<des<<endl;
+    string a = Dec2A(15,16);
+    cout<<a<<endl;
     return 0; 
 }

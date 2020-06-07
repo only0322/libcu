@@ -7,7 +7,6 @@
 #include<stddef.h>
 #include<errno.h>
 #include<fcntl.h>
-#include<string.h>
 #include<math.h>
 
 #ifdef _WIN32
